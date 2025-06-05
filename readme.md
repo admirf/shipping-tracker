@@ -8,6 +8,9 @@ npm run build
 php artisan app:setup
 ```
 
+### To run tests
+`composer run test`
+
 ### To run locally
 `composer run dev`
 
