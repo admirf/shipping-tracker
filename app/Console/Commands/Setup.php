@@ -27,5 +27,6 @@ class Setup extends Command
     {
         $this->call('migrate:fresh');
         $this->call('db:seed');
+        $this->call('app:generate-csv');
     }
 }
