@@ -31,14 +31,16 @@ class GenerateCsv extends Command
      */
     public function handle(): void
     {
-        $content = "tracking_code,expected_delivery_at\n";
+        $header = "tracking_code,expected_delivery_at";
+
+        $lines = [$header];
 
         foreach ($this->sampleTrackingCodes as $trackingCode) {
             $expected_delivery_at = now()->addWeek()->format('Y-m-d H:i:s');
 
-            $content .= "$trackingCode,$expected_delivery_at\n";
+            $lines[] = "$trackingCode,$expected_delivery_at";
         }
 
-        Storage::put(config('shipping.csv.path'), $content);
+        Storage::put(config('shipping.csv.path'), implode("\r\n", $lines));
     }
 }

@@ -17,17 +17,20 @@ use Illuminate\Support\Facades\Storage;
  * so that we can leverage binary search once the CSV is read,
  * but then again we wouldn't use csv for a larger scale solution
  */
-class CsvShippingServiceAdapter implements ShippingServiceDriverInterface
+readonly class CsvShippingServiceAdapter implements ShippingServiceDriverInterface
 {
-    public function __construct(private readonly array $config) { }
+    public function __construct(private array $config) { }
 
     public function getShipmentByTrackingCode(string $trackingCode): ?ShippableInterface
     {
         $path = $this->config['path'];
 
         $content = Storage::get($path);
+        //dd($content);
 
         $data = $this->parseData($content);
+
+        //dd($data);
 
         $record = $data->firstWhere('tracking_code', $trackingCode);
 
