@@ -19,7 +19,7 @@ php artisan app:setup
 0000000000
 1234567890
 ```
-### ENV variable to swithc shipping provider is
+### ENV variable to switch shipping provider is
 `SHIPPING_PROVIDER`
 #### possible values are:
 ```
