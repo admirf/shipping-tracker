@@ -17,10 +17,9 @@ export default function ShipmentTracker() {
         const interval = setInterval(() => {
             if (deliveryDate !== '') {
                 setRemainingTime(dayjs(deliveryDate).fromNow());
-                return;
+            } else {
+                setRemainingTime('');
             }
-
-            setRemainingTime('');
         }, 1000);
 
         return () => {
