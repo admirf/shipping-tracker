@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Shipping\Adapters\EloquentShippingServiceAdapter;
 use App\Shipping\Factories\ShippingServiceFactory;
 use App\Shipping\ShippingService;
 use Illuminate\Support\ServiceProvider;
@@ -14,6 +15,10 @@ class ShippingServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(EloquentShippingServiceAdapter::class, function () {
+            return new EloquentShippingServiceAdapter();
+        });
+
         $this->app->bind(ShippingServiceFactory::class, function (Application $app) {
             return new ShippingServiceFactory($app, config('shipping'));
         });

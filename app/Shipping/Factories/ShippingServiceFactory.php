@@ -14,9 +14,11 @@ use LogicException;
 class ShippingServiceFactory
 {
     public const PROVIDER_MOCK = 'mock';
+    public const PROVIDER_ELOQUENT = 'eloquent';
 
     private array $providers = [
         self::PROVIDER_MOCK => MockShippingServiceAdapter::class,
+        self::PROVIDER_ELOQUENT => MockShippingServiceAdapter::class,
     ];
 
     public function __construct(
