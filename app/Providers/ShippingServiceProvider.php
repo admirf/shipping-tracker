@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Shipping\Adapters\CsvShippingServiceAdapter;
 use App\Shipping\Adapters\EloquentShippingServiceAdapter;
 use App\Shipping\Factories\ShippingServiceFactory;
 use App\Shipping\ShippingService;
@@ -15,6 +16,10 @@ class ShippingServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(CsvShippingServiceAdapter::class, function () {
+            return new CsvShippingServiceAdapter(config('shipping.csv'));
+        });
+
         $this->app->bind(EloquentShippingServiceAdapter::class, function () {
             return new EloquentShippingServiceAdapter();
         });

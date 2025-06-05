@@ -2,6 +2,8 @@
 
 namespace App\Shipping\Factories;
 
+use App\Shipping\Adapters\CsvShippingServiceAdapter;
+use App\Shipping\Adapters\EloquentShippingServiceAdapter;
 use App\Shipping\Contracts\ShippingServiceDriverInterface;
 use App\Shipping\Adapters\MockShippingServiceAdapter;
 use App\Shipping\ShippingService;
@@ -15,10 +17,12 @@ class ShippingServiceFactory
 {
     public const PROVIDER_MOCK = 'mock';
     public const PROVIDER_ELOQUENT = 'eloquent';
+    public const PROVIDER_CSV = 'csv';
 
     private array $providers = [
         self::PROVIDER_MOCK => MockShippingServiceAdapter::class,
-        self::PROVIDER_ELOQUENT => MockShippingServiceAdapter::class,
+        self::PROVIDER_ELOQUENT => EloquentShippingServiceAdapter::class,
+        self::PROVIDER_CSV => CsvShippingServiceAdapter::class,
     ];
 
     public function __construct(
