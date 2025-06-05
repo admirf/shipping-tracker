@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Shipping\Provider;
+namespace App\Shipping\Adapters;
 
 use App\Shipping\Contracts\ShippableInterface;
-use App\Shipping\Contracts\ShippingServiceProviderInterface;
+use App\Shipping\Contracts\ShippingServiceDriverInterface;
 use App\Shipping\Shipments\SimpleShipment;
 
-class MockShippingServiceProvider implements ShippingServiceProviderInterface
+class MockShippingServiceAdapter implements ShippingServiceDriverInterface
 {
     public function getShipmentByTrackingCode(string $trackingCode): ?ShippableInterface
     {

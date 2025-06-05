@@ -2,7 +2,7 @@
 
 namespace App\Shipping\Contracts;
 
-interface ShippingServiceProviderInterface
+interface ShippingServiceDriverInterface
 {
     public function getShipmentByTrackingCode(string $trackingCode): ?ShippableInterface;
 }

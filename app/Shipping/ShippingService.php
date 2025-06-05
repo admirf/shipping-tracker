@@ -3,12 +3,12 @@
 namespace App\Shipping;
 
 use App\Shipping\Contracts\ShippableInterface;
-use App\Shipping\Contracts\ShippingServiceProviderInterface;
+use App\Shipping\Contracts\ShippingServiceDriverInterface;
 use App\Shipping\Exceptions\ShipmentNotFoundException;
 
 readonly class ShippingService
 {
-    public function __construct(private ShippingServiceProviderInterface $driver) { }
+    public function __construct(private ShippingServiceDriverInterface $driver) { }
 
     /**
      * @throws ShipmentNotFoundException

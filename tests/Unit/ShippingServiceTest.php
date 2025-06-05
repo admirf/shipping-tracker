@@ -5,7 +5,7 @@ namespace Tests\Unit;
 use App\Shipping\Contracts\ShippableInterface;
 use App\Shipping\Exceptions\ShipmentNotFoundException;
 use App\Shipping\Factories\ShippingServiceFactory;
-use App\Shipping\Provider\MockShippingServiceProvider;
+use App\Shipping\Adapters\MockShippingServiceAdapter;
 use App\Shipping\ShippingService;
 use Tests\TestCase;
 
@@ -14,7 +14,7 @@ class ShippingServiceTest extends TestCase
     public function testService(): void
     {
         // test instantiation
-        $this->app->instance(MockShippingServiceProvider::class, new MockShippingServiceProvider());
+        $this->app->instance(MockShippingServiceAdapter::class, new MockShippingServiceAdapter());
 
         $shippingServiceFactory = new ShippingServiceFactory($this->app, [
             'service' => [

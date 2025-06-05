@@ -2,8 +2,8 @@
 
 namespace App\Shipping\Factories;
 
-use App\Shipping\Contracts\ShippingServiceProviderInterface;
-use App\Shipping\Provider\MockShippingServiceProvider;
+use App\Shipping\Contracts\ShippingServiceDriverInterface;
+use App\Shipping\Adapters\MockShippingServiceAdapter;
 use App\Shipping\ShippingService;
 use Illuminate\Contracts\Foundation\Application;
 use Psr\Container\ContainerExceptionInterface;
@@ -16,7 +16,7 @@ class ShippingServiceFactory
     public const PROVIDER_MOCK = 'mock';
 
     private array $providers = [
-        self::PROVIDER_MOCK => MockShippingServiceProvider::class,
+        self::PROVIDER_MOCK => MockShippingServiceAdapter::class,
     ];
 
     public function __construct(
@@ -34,8 +34,8 @@ class ShippingServiceFactory
         if (isset($this->providers[$providerName])) {
             $provider = $this->app->get($this->providers[$providerName]);
 
-            if (! $provider instanceof ShippingServiceProviderInterface) {
-                throw new LogicException("Provide $providerName does not implement ShippingServiceProviderInterface");
+            if (! $provider instanceof ShippingServiceDriverInterface) {
+                throw new LogicException("Provide $providerName does not implement ShippingServiceDriverInterface");
             }
 
             return new ShippingService($provider);
