@@ -15,7 +15,7 @@ class ShippingServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(ShippingServiceFactory::class, function (Application $app) {
-            return new ShippingServiceFactory(config('shipping'));
+            return new ShippingServiceFactory($app, config('shipping'));
         });
 
         $this->app->bind(ShippingService::class, function (Application $app) {

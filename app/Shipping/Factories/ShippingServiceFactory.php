@@ -3,6 +3,7 @@
 namespace App\Shipping\Factories;
 
 use App\Shipping\ShippingService;
+use Illuminate\Contracts\Foundation\Application;
 
 class ShippingServiceFactory
 {
@@ -10,7 +11,10 @@ class ShippingServiceFactory
 
     ];
 
-    public function __construct(private readonly array $config) { }
+    public function __construct(
+        private readonly Application $app,
+        private readonly array $config
+    ) { }
 
     public function make(): ShippingService
     {
