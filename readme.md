@@ -1,0 +1,25 @@
+## Shipping Tracking Module in Laravel/React
+
+### To set it up run
+```
+composer install
+npm install
+npm run build
+php artisan app:setup
+```
+
+### To run locally
+`composer run dev`
+
+### Test tracking codes that work are as follows
+```
+0000000000
+1234567890
+```
+### ENV variable to swithc shipping provider is
+`SHIPPING_PROVIDER`
+#### possible values are:
+```
+csv
+eloquent
+```
