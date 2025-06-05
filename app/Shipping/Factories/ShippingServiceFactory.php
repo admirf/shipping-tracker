@@ -44,7 +44,11 @@ class ShippingServiceFactory
                 throw new LogicException("Provide $providerName does not implement ShippingServiceDriverInterface");
             }
 
-            return new ShippingService($provider);
+            return new ShippingService(
+                driver: $provider,
+                cachePrefix: $this->config['service']['cache_prefix'] ?? 'shipping_service_',
+                cacheTtl: $this->config['service']['cache_ttl'] ?? 3600,
+            );
         }
 
         throw new LogicException('Not implemented');
