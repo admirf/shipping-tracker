@@ -19,7 +19,7 @@ class ShipmentSeeder extends Seeder
         ]);
 
         Shipment::query()->create([
-            'tracking_code' => '000000000',
+            'tracking_code' => '0000000000',
             'expected_delivery_at' => now()->addWeek(),
         ]);
     }
